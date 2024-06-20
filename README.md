@@ -1,4 +1,4 @@
-# Task Management Application (Web3 Africa Assesment)
+# Task Management Application (Web3 Africa Assessment)
 
 This is a simple task management application that helps you manage your day to day task. This Simple Application is built with React and Tailwind CSS.
 

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState(() => {
@@ -24,6 +26,9 @@ const TaskManager = () => {
       setTasks([...tasks, task]);
       setNewTask('');
       setDueDate('');
+      toast.success('Task added successfully!');
+    } else {
+      toast.error('Please enter a task title and due date.');
     }
   };
 
@@ -48,11 +53,13 @@ const TaskManager = () => {
       setNewTask('');
       setDueDate('');
       setEditingTaskId(null);
+      toast.success('Task updated successfully!');
     }
   };
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
+    toast.info('Task deleted.');
   };
 
   const toggleComplete = (id) => {
@@ -60,6 +67,12 @@ const TaskManager = () => {
       tasks.map((task) =>
         task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
       )
+    );
+    const task = tasks.find((task) => task.id === id);
+    toast.success(
+      task.isCompleted
+        ? 'Task marked as incomplete.'
+        : 'Task marked as complete.'
     );
   };
 
@@ -140,8 +153,7 @@ const TaskManager = () => {
         <h2 className="text-xl font-bold mt-6 mb-2 text-green-600">
           Completed Tasks
         </h2>
-        {completedTasks.length === 0 && <div>No completed task for now </div>}
-
+        {completedTasks.length === 0 && <div>No completed task for now</div>}
         <ul>
           {completedTasks.map((task) => (
             <li
@@ -174,6 +186,19 @@ const TaskManager = () => {
           ))}
         </ul>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 };
