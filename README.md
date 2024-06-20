@@ -10,6 +10,10 @@ This is a simple task management application that helps you manage your day to d
 - Mark tasks as complete and view a list of completed tasks.
 - Persist tasks using local storage.
 
+## Live Link
+
+https://task-management-web3.vercel.app/
+
 ## Installation
 
 1. Clone the repository:
